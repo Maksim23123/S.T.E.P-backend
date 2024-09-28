@@ -1,0 +1,5 @@
+{
+  "generate-topic-prompt": "",
+  "generate-test-prompt": "Now generate another JSON with the test about {0} topic to this material - \"{1}\". Your answer should be in text (JSON format) and without other additions! The test should contain {2} questions and each question should have 4 answers where only one is right. Randomize answers. answerId is counted from zero.",
+  "test-format-example": " Example JSON (array of objects): [{\"title\":\"text of question\", \"answers\":[{\"text\":\"text of answer\"}, ...], \"answerId\": id of correct answer}, ...]."
+}
