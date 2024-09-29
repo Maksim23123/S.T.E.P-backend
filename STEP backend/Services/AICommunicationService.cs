@@ -20,7 +20,7 @@ namespace STEP_backend.Services
 
             var chatCompletionsOptions = new ChatCompletionsOptions
             {
-                DeploymentName = "gpt-3.5-turbo",
+                DeploymentName = "gpt-4o",
                 Temperature = (float)1,
                 MaxTokens = 800,
                 FrequencyPenalty = 0,
