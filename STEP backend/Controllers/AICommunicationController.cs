@@ -42,5 +42,19 @@ namespace STEP_backend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("generate-teach-mark")]
+        public async Task<IActionResult> GenerateTeachMark([FromBody] GenerateTeachMarkRequestDto request)
+        {
+            try
+            {
+                var response = await _aiCommunicationService.GenerateTeachMark(request.Sentence, request.TopicName, request.Material);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

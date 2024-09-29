@@ -51,7 +51,7 @@ namespace STEP_backend.Services
 
             var chatCompletionsOptions = new ChatCompletionsOptions
             {
-                DeploymentName = "gpt-3.5-turbo",
+                DeploymentName = "gpt-4o",
                 Temperature = (float)1,
                 MaxTokens = 800,
                 FrequencyPenalty = 0,
@@ -62,6 +62,37 @@ namespace STEP_backend.Services
             var response = await _client.GetChatCompletionsAsync(chatCompletionsOptions);
             var responseStr = response.Value.Choices[0].Message.Content;
             return new GenerateTopicResponseDto() { Topic = topicName, Material = responseStr };
+        }
+
+        public async Task<GenerateTeachMarkResponseDto> GenerateTeachMark(string sentence, string topicName, string material)
+        {
+            string prompt = await _promptService.GetGenerateTeachMarkPromptAsync(sentence, topicName, material);
+
+            var chatCompletionsOptions = new ChatCompletionsOptions
+            {
+                DeploymentName = "gpt-4o",
+                Temperature = (float)1,
+                MaxTokens = 20,
+                FrequencyPenalty = 0,
+                PresencePenalty = 0
+            };
+
+            chatCompletionsOptions.Messages.Add(new ChatRequestSystemMessage(prompt));
+            var response = await _client.GetChatCompletionsAsync(chatCompletionsOptions);
+            var responseStr = response.Value.Choices[0].Message.Content;
+            try
+            {
+                var mark = JsonSerializer.Deserialize<GenerateTeachMarkResponseDto>(responseStr);
+
+                if (mark == null)
+                    throw new Exception("Bad JSON Test format from OpenAi");
+                return mark;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Bad JSON Test format from OpenAi");
+                throw;
+            }
         }
     }
 }

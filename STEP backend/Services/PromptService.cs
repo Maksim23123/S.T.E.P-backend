@@ -32,5 +32,15 @@ namespace STEP_backend.Services
                 return result;
             });
         }
+
+        public async Task<string> GetGenerateTeachMarkPromptAsync(string sentence, string topicName, string material)
+        {
+            return await Task.Run(() =>
+            {
+                var raw = _rawPrompts.GenerateMarkPrompt;
+                var result = string.Format(raw, sentence, topicName, material);
+                return result;
+            });
+        }
     }
 }

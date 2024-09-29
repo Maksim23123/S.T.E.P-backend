@@ -7,5 +7,6 @@ namespace STEP_backend.Architecture.Services
         public Task<GenerateTestResponseDto> GenerateTestAsync(string topic, string material, int length = 5);
         public Task<GenerateTopicResponseDto> GenerateTeachMaterialByTopic(string topicName);
 
+        public Task<GenerateTeachMarkResponseDto> GenerateTeachMark(string sentence, string topicName, string material);
     }
 }

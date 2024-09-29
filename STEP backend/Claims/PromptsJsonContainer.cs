@@ -12,5 +12,7 @@ namespace STEP_backend.Claims
 
         [JsonPropertyName("test-format-example")]
         public string TestFormatExample { get; set; }
+        [JsonPropertyName("generate-mark-prompt")]
+        public string GenerateMarkPrompt { get; set; }
     }
 }
