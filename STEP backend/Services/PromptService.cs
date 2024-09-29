@@ -27,11 +27,10 @@ namespace STEP_backend.Services
         {
             return await Task.Run(() =>
             {
-                var raw = _rawPrompts.GenerateTestPrompt;
+                var raw = _rawPrompts.GenerateMaterialPrompt;
                 var result = string.Format(raw, topicName);
                 return result;
             });
         }
-
     }
 }

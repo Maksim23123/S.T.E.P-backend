@@ -51,8 +51,9 @@ namespace STEP_backend.Services
 
             var chatCompletionsOptions = new ChatCompletionsOptions
             {
+                DeploymentName = "gpt-3.5-turbo",
                 Temperature = (float)1,
-                MaxTokens = 60,
+                MaxTokens = 800,
                 FrequencyPenalty = 0,
                 PresencePenalty = 0
             };

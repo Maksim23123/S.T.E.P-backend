@@ -28,5 +28,19 @@ namespace STEP_backend.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("generate-material")]
+        public async Task<IActionResult> GenerateMaterial([FromBody] GenerateMaterialRequestDto request)
+        {
+            try
+            {
+                var response = await _aiCommunicationService.GenerateTeachMaterialByTopic(request.TopicName);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
